@@ -20,6 +20,7 @@ plugins {
 
 apply plugin: 'java'
 apply plugin: 'io.spring.dependency-management'
+apply plugin: 'org.springframework.boot'
 
 group 'nu.larsson.stefan.test'
 version '1.0-SNAPSHOT'
@@ -29,9 +30,9 @@ targetCompatibility = 1.8
 
 
 // gradle 4.5+: bootJar, gradle 4.4: bootRepackage
-//bootJar {
-//    classifier = 'boot'
-//}
+bootJar {
+    classifier = 'boot'
+}
 
 // at least starting from gradle 4.5, plugin 'io.spring.dependency-management'
 // is required to enable 'dependencyManagement' support
