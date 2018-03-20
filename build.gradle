@@ -1,0 +1,67 @@
+buildscript {
+    ext {
+        springBootVersion = '2.0.0.RELEASE'
+    }
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:" + springBootVersion)
+        classpath("gradle.plugin.com.github.spotbugs:gradlePlugin:1.6.0")
+    }
+}
+
+plugins {
+    id 'application'
+    id 'nebula.optional-base' version '3.3.0'
+}
+
+apply plugin: 'java'
+apply plugin: 'io.spring.dependency-management'
+
+group 'nu.larsson.stefan.test'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+
+// gradle 4.5+: bootJar, gradle 4.4: bootRepackage
+//bootJar {
+//    classifier = 'boot'
+//}
+
+// at least starting from gradle 4.5, plugin 'io.spring.dependency-management'
+// is required to enable 'dependencyManagement' support
+dependencyManagement {
+    imports {
+        mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Finchley.M8'
+        // spring-boot-dependencies should be declared last to override everything on top
+        mavenBom 'org.springframework.boot:spring-boot-dependencies:' + springBootVersion
+    }
+}
+
+repositories {
+    mavenCentral()
+    // TODO using spring-cloud-kubernetes snapshot, remove once there's a proper 0.2.1 release:
+    maven { url 'https://repo.spring.io/libs-snapshot' }
+    maven { url 'https://repo.spring.io/libs-milestone' }
+}
+
+dependencies {
+    compile 'org.springframework.boot:spring-boot-starter-web'
+    compile 'org.springframework.boot:spring-boot-starter-aop'
+    compile 'org.springframework.boot:spring-boot-starter-actuator'
+    // TODO replace with released 0.2.1 version when available
+    compile 'org.springframework.cloud:spring-cloud-starter-kubernetes:0.2.1.BUILD-SNAPSHOT'
+    compile 'org.springframework.cloud:spring-cloud-kubernetes-config:0.2.1.BUILD-SNAPSHOT'
+
+    optional 'org.springframework.boot:spring-boot-configuration-processor:' + springBootVersion
+
+    testCompile 'org.springframework.boot:spring-boot-starter-test:' + springBootVersion
+
+
+
+}
