@@ -1,6 +1,6 @@
 # Assuming this file will only be used outside of kubernetes, so disabling support
 # Comment out rest of the file to make the tests succeed
-spring:
-  cloud:
-    kubernetes:
-      enabled: false
+#spring:
+#  cloud:
+#    kubernetes:
+#      enabled: false
