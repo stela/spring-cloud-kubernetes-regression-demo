@@ -28,6 +28,7 @@ version '1.0-SNAPSHOT'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
+mainClassName = "nu.larsson.stefan.test.sckrd.Application"
 
 // gradle 4.5+: bootJar, gradle 4.4: bootRepackage
 bootJar {
@@ -48,7 +49,6 @@ repositories {
     mavenCentral()
     // TODO using spring-cloud-kubernetes snapshot, remove once there's a proper 0.2.1 release:
     maven { url 'https://repo.spring.io/libs-snapshot' }
-    maven { url 'https://repo.spring.io/libs-milestone' }
 }
 
 dependencies {
@@ -62,7 +62,4 @@ dependencies {
     optional 'org.springframework.boot:spring-boot-configuration-processor:' + springBootVersion
 
     testCompile 'org.springframework.boot:spring-boot-starter-test:' + springBootVersion
-
-
-
 }
