@@ -10,9 +10,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest(classes = Application.class)
 public class ApplicationTest {
     @Test
-    public void testCreateAndGet() {
-        Assert.assertTrue("Just a dummy test", true);
+    public void testIt() {
+        Assert.assertTrue("Just a test to show KubernetesClient bean unavailable", true);
     }
-
-
 }
