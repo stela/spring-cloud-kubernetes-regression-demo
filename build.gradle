@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = '2.0.0.RELEASE'
+        springBootVersion = '2.0.1.RELEASE'
     }
     repositories {
         maven {
@@ -39,7 +39,7 @@ bootJar {
 // is required to enable 'dependencyManagement' support
 dependencyManagement {
     imports {
-        mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Finchley.M8'
+        mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Finchley.RC1'
         // spring-boot-dependencies should be declared last to override everything on top
         mavenBom 'org.springframework.boot:spring-boot-dependencies:' + springBootVersion
     }
@@ -49,6 +49,7 @@ repositories {
     mavenCentral()
     // TODO using spring-cloud-kubernetes snapshot, remove once there's a proper 0.2.1 release:
     maven { url 'https://repo.spring.io/libs-snapshot' }
+    maven { url 'https://repo.spring.io/libs-milestone' }
 }
 
 dependencies {
@@ -56,9 +57,9 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-starter-aop'
     compile 'org.springframework.boot:spring-boot-starter-actuator'
 
-    // TODO replace with released 0.2.1 version when available
-    // Replacing 0.2.1.BUILD-SNAPSHOT with 0.2.0.RELEASE makes it build OK again
-    def springCloudKubernetesRelease = '0.2.1.BUILD-SNAPSHOT'
+    // Replacing 0.2.1.BUILD-SNAPSHOT with 0.2.0.RELEASE makes it build OK again,
+    // likewise new milestone 0.3.0.RC1 fixes the issue
+    def springCloudKubernetesRelease = '0.2.0.RELEASE'
     compile 'org.springframework.cloud:spring-cloud-starter-kubernetes:' + springCloudKubernetesRelease
     compile 'org.springframework.cloud:spring-cloud-kubernetes-config:' + springCloudKubernetesRelease
 
