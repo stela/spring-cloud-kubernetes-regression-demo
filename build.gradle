@@ -59,7 +59,7 @@ dependencies {
 
     // Replacing 0.2.1.BUILD-SNAPSHOT with 0.2.0.RELEASE makes it build OK again,
     // likewise new milestone 0.3.0.RC1 fixes the issue
-    def springCloudKubernetesRelease = '0.2.0.RELEASE'
+    def springCloudKubernetesRelease = '0.3.0.RC1'
     compile 'org.springframework.cloud:spring-cloud-starter-kubernetes:' + springCloudKubernetesRelease
     compile 'org.springframework.cloud:spring-cloud-kubernetes-config:' + springCloudKubernetesRelease
 
